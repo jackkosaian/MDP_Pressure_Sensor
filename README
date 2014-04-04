@@ -1,0 +1,9 @@
+PURPOSE
+This program was written for MDP Intelligent Model of the Eye Research Project.
+The purpose of this program is to take readings from a pressure sensor attached to a simulator of an eye. 
+
+INITIALIZATION
+The program will wait for the user to fill up the simulator to a certain pressure, at which point it will take an average of the previous ten readings and return this value as the base pressure.
+
+USER FEEDBACK
+If the user cuts through the membrane of the simulator, the pressure will drop. At this drop, a red LED and a buzzer will turn on.
