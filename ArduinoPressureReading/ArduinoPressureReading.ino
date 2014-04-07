@@ -48,7 +48,9 @@ void loop(){
    //digitalWrite(initializationLED, HIGH);
      if( averageCounter == 0)
        averageCounter = 1;
-     turnOnLED = true;
+     if (averageCounter >= 0 && averageCounter < 10){
+       turnOnLED = true;
+     }
    //takeAverage = true;
  }
  
