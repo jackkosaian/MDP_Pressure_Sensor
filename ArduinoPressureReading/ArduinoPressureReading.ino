@@ -45,13 +45,18 @@ void loop(){
  // Turn on LED if at desiredVoltage +/- 5
  if (pressureValue > desiredVoltage - 5 && pressureValue < desiredVoltage + 5)
  {
-   //digitalWrite(initializationLED, HIGH);
-     if( averageCounter == 0)
+     // Set variable to allow LED lighting
+     if( averageCounter == 0){
        averageCounter = 1;
-     if (averageCounter >= 0 && averageCounter < 10){
+     }
+     
+     // Turn on green LED when user has reached desiredVoltage
+     if (averageCounter >= 0 && averageCounter <= 10){
        turnOnLED = true;
      }
-   //takeAverage = true;
+     else {
+       turnOnLED = false;
+     }
  }
  
  else {
