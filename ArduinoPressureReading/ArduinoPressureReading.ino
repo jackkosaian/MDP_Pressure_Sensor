@@ -4,24 +4,20 @@ int yellowLED = 3; // LED pin for initialization
 int buzzerPin = 7; // Buzzer pin
 int pressurePin = A0; // Pin to take pressure reading
 int pressureValue; // Pressure value in analog units
-int pressureThreshold = 950; // Warn if over this value
-long delayValue = 1000000/2500/2; // Delay for buzzer
-float desiredVoltage = (((760*4/15/51.7149326)+.5)*1024/5); // Desired analog read value (assuming 17mmHg)
 float pressureInmmHg; // Pressure value in mmHg
+float desiredVoltage = (((760*4/15/51.7149326)+.5)*1024/5); // Desired analog read value (assuming 17mmHg)
 float basePressure; // Pressure that will be used as base (intraocular pressure)
+long delayValue = 1000000/2500/2; // Delay for buzzer
 
 // Required variables for running average
 const int numReadings = 10;
-float readings[numReadings];
-int index = 0;
 float total = 0;
 float average;
 
 // Test variables
 int averageCounter = 0;
-boolean turnOnLED = false;
-long numCycles = 2500 * 2 / 1000;
 int canBuzz = 0;
+boolean turnOnLED = false;
 
 void setup(){
  
@@ -34,11 +30,6 @@ void setup(){
  pinMode(buzzerPin, OUTPUT);
  
  Serial.begin(9600); 
-
- // Initialize all readings to be 0
- for (int thisReading = 0; thisReading < numReadings; thisReading++){
-   readings[thisReading] = 0.0;
- } 
 }
 
 void loop(){
@@ -90,12 +81,12 @@ void loop(){
     if (averageCounter >= 1 && averageCounter <= 10)
     {
       total += pressureValue;
-      index += 1; // increment the index
       average = (float)total / (float)numReadings; 
  
       if (averageCounter == 10){
          basePressure = average;
-      } 
+      }
+      
       averageCounter += 1;
     }
 
