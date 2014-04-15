@@ -110,6 +110,7 @@ void loop(){
      // If pressure gets too low
      if(pressureValue < basePressure - 20){
       digitalWrite(redLED, HIGH);
+      digitalWrite(greenLED, LOW);
       canBuzz = 1;
      }
  
